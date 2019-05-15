@@ -1,0 +1,31 @@
+{
+  "name": "dynamo-calc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build",
+  "scripts": {
+    "start": "npm run build && node build",
+    "build": "npm run tslint && npm run build-ts",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "debug": "npm run build && npm run watch-debug"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.453.0",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^5.0.5",
+    "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {
+    "@types/command-line-usage": "^5.0.1",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/command-line-args": "^5.0.0",
+    "@types/node": "^12.0.0",
+    "@types/readline-sync": "^1.4.3",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  }
+}
