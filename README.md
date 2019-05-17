@@ -2,11 +2,19 @@
 
   Calculate your DynamoDB capacity usages for the past month and compare the
   cost between 'Provisioned' and 'On-Demand' billing mode
+  
+Build
+------  
+```bash
+$ npm install
+$ npm run build-dist
+```
 
 Usage
 ------
-
-  `$ dynamo-calc --tables TableA TableB --region us-west-1 --profile test`
+```bash
+./dynamo-calc --tables TableA TableB --region us-west-1 --profile test
+```
 
 Options
 ------

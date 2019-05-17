@@ -38,7 +38,7 @@ async function main(args: CommandLineOptions) {
     const tableNames = TABLE_NAMES.length > 0
         ? <string[]>TABLE_NAMES
         : (await dynamoDB.listTables().promise()).TableNames || []
-    console.log(`Retrieving data from: ${tableNames.join(", ")}`)
+    console.log(`Retrieving data from table(s): ${tableNames.join(", ")}`)
 
     const delayedCalculateCapacity = (tableName: string, index: number) =>
         withDelay<DynamoCapacity>(index * 500)(
@@ -50,6 +50,7 @@ async function main(args: CommandLineOptions) {
 
     const tableCosts = tableCapacities.map(d => new DynamoCostCalculator(d, COST))
 
+    console.log("")
     tableCosts.forEach(data => {
         console.log(data.tableName)
         console.log(`  Monthly usage:`)

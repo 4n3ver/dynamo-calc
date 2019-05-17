@@ -6,9 +6,10 @@
   "scripts": {
     "start": "npm run build && node build",
     "build": "npm run tslint && npm run build-ts",
-    "build-ts": "tsc",
-    "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "build-ts": "npx tsc",
+    "build-dist": "npm run build && npx pkg build/index.js --output dist/dynamo-calc --target host",
+    "watch-ts": "npx tsc -w",
+    "tslint": "npx tslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-debug"
   },
   "author": "",
@@ -16,15 +17,14 @@
   "dependencies": {
     "aws-sdk": "^2.453.0",
     "command-line-args": "^5.1.1",
-    "command-line-usage": "^5.0.5",
-    "readline-sync": "^1.4.9"
+    "command-line-usage": "^5.0.5"
   },
   "devDependencies": {
-    "@types/command-line-usage": "^5.0.1",
     "@types/aws-sdk": "^2.7.0",
     "@types/command-line-args": "^5.0.0",
+    "@types/command-line-usage": "^5.0.1",
     "@types/node": "^12.0.0",
-    "@types/readline-sync": "^1.4.3",
+    "pkg": "^4.4.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   }
