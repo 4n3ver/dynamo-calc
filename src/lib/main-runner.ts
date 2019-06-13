@@ -26,4 +26,4 @@ const runMain: (optsGuide: Section[], optsDef: OptionDefinition[], main: (opts: 
         }
     }
 
-export = runMain
+export default runMain

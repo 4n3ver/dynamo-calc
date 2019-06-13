@@ -1,10 +1,10 @@
 import { CloudWatch, config, DynamoDB, SharedIniFileCredentials } from "aws-sdk"
 import { CommandLineOptions } from "command-line-args"
 
-import { DynamoMetrics } from "./dynamo-metrics"
+import DynamoMetrics from "./dynamo-metrics"
+import DynamoCapacityCalculator, { DynamoCapacity } from "./dynamo-capacity-calculator"
+import DynamoCostCalculator, { TableCapacityPricingPerUnit } from "./dynamo-cost-calculator"
 import { collectPromises, resolvedPromiseOf, sum, withDelay } from "./util"
-import { DynamoCapacity, DynamoCapacityCalculator } from "./dynamo-capacity-calculator"
-import { DynamoCostCalculator, TableCapacityPricingPerUnit } from "./dynamo-cost-calculator"
 
 const COST: TableCapacityPricingPerUnit = {
     OnDemandRCU: 0.25 / 1000000,
@@ -77,4 +77,4 @@ async function main(args: CommandLineOptions) {
     console.log(`Total saved per month: $${totalOnDemandSavings}`)
 }
 
-export = main
+export default main

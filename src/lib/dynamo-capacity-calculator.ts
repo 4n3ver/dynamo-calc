@@ -1,4 +1,4 @@
-import { DynamoMetrics, DynamoMetricType } from "./dynamo-metrics"
+import DynamoMetrics, { DynamoMetricType } from "./dynamo-metrics"
 import { average, sum } from "./util"
 
 const ONE_MONTH_SECONDS = 30 * 24 * 3600
@@ -60,7 +60,7 @@ class DynamoCapacityCalculator {
     }
 }
 
+export default DynamoCapacityCalculator
 export {
-    DynamoCapacity,
-    DynamoCapacityCalculator
+    DynamoCapacity
 }

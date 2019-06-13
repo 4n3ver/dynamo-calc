@@ -18,10 +18,16 @@ const withDelay: <T>(delay: number) => (fn: () => Promise<T>) => Promise<T> =
             )
         )
 
+const withInterval: <T>(delay: number) => (fn: () => void) => void =
+    delay => fn => setInterval(fn, delay)
+
+let nextCacheId = 0
 const memoize: <T>(fn: (...args: any[]) => T) => (...args: any[]) => T =
     fn => {
-        const cache = new Map<string, any>()
+        const cacheId = `__memoize_cache_${nextCacheId++}`
         return function (...args) {
+            this[cacheId] = this[cacheId] || new Map<string, any>()
+            const cache = this[cacheId]
             const serializedArgs = JSON.stringify(args)
             if (!cache.has(serializedArgs)) {
                 cache.set(serializedArgs, fn.apply(this, ...args))
@@ -42,7 +48,6 @@ const Memoized: () => MethodDecorator =
         return descriptor
     }
 
-
 const sum: (acc: number, c: number) => number = (acc, c) => acc + c
 
 const average: (nums: number[]) => number = nums => nums.reduce(sum, 0) / Math.max(1, nums.length)
@@ -51,6 +56,7 @@ export {
     collectPromises,
     resolvedPromiseOf,
     withDelay,
+    withInterval,
     sum,
     average,
     memoize,

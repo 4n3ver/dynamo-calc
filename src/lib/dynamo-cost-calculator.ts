@@ -46,7 +46,7 @@ class DynamoCostCalculator {
     }
 }
 
+export default DynamoCostCalculator
 export {
-    TableCapacityPricingPerUnit,
-    DynamoCostCalculator
+    TableCapacityPricingPerUnit
 }

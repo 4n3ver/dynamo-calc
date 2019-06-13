@@ -96,8 +96,8 @@ class DynamoMetrics {
     }
 }
 
+export default DynamoMetrics
 export {
-    DynamoMetrics,
     DynamoMetric,
     DynamoMetricType
 }
