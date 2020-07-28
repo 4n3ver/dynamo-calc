@@ -18,6 +18,14 @@ class DynamoCapacityCalculator {
         this.dynamoMetrics = dynamoMetrics
     }
 
+    async calculateCapacities(tableNames: string[], start: Date, period: number = ONE_MONTH_SECONDS): Promise<Readonly<DynamoCapacity>[]> {
+        const tableCapacities = []
+        for (const tableName of tableNames) {
+            tableCapacities.push(await this.calculateCapacity(tableName, start, period))
+        }
+        return tableCapacities
+    }
+
     async calculateCapacity(tableName: string, start: Date, period: number = ONE_MONTH_SECONDS): Promise<Readonly<DynamoCapacity>> {
         const consumedRead = await this.getSum(tableName, DynamoMetricType.ConsumedReadCapacityUnits, start, period)
         const consumedWrite = await this.getSum(tableName, DynamoMetricType.ConsumedWriteCapacityUnits, start, period)

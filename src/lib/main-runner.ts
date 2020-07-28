@@ -11,7 +11,7 @@ const getArgs: (optsDef: OptionDefinition[]) => CommandLineOptions | undefined =
         }
     }
 
-const runMain: (optsGuide: Section[], optsDef: OptionDefinition[], main: (opts: CommandLineOptions) => Promise<any>) => void =
+const runMain: (optsGuide: Section[], optsDef: OptionDefinition[], main: (opts: CommandLineOptions) => Promise<any>) => Promise<void> =
     async (optsGuide, optsDef, main) => {
         const usageGuide = cliUsages(optsGuide)
         try {

@@ -4,13 +4,13 @@
   "description": "",
   "main": "build",
   "scripts": {
-    "start": "npm run build && node build",
+    "prestart": "npm run build",
+    "start": "node --inspect build",
     "build": "npm run tslint && npm run build-ts",
     "build-ts": "npx tsc",
     "build-dist": "npm run build && npx pkg build/index.js --output dist/dynamo-calc --target host",
     "watch-ts": "npx tsc -w",
-    "tslint": "npx tslint -c tslint.json -p tsconfig.json",
-    "debug": "npm run build && npm run watch-debug"
+    "tslint": "npx tslint -c tslint.json -p tsconfig.json"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +24,7 @@
     "@types/command-line-args": "^5.0.0",
     "@types/command-line-usage": "^5.0.1",
     "@types/node": "^12.0.0",
-    "pkg": "^4.4.0",
+    "pkg": "^4.4.9",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   }
